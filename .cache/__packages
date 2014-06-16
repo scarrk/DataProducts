@@ -1,9 +1,6 @@
 base
-datasets
 devtools
-graphics
-grDevices
-methods
+ggplot2
+hexbin
+lattice
 slidify
-stats
-utils

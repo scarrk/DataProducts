@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My First Slidify</title>
+  <title>Developing Data Products</title>
   <meta charset="utf-8">
-  <meta name="description" content="My First Slidify">
-  <meta name="author" content="Kev Scarr">
+  <meta name="description" content="Developing Data Products">
+  <meta name="author" content="Kevin Scarr">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -13,7 +13,8 @@
     media="only screen and (max-device-width: 480px)" >
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
@@ -31,9 +32,9 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>My First Slidify</h1>
-    <h2>Rocking Deck</h2>
-    <p>Kev Scarr<br/></p>
+    <h1>Developing Data Products</h1>
+    <h2>Peer Assignment (Airport Demo)</h2>
+    <p>Kevin Scarr<br/>June 2014</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -42,14 +43,18 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Overview</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <p>The demonstrator shows flights between airports for the countries that the user selects.  </p>
+
+<p>This allows the user to choose to see national and international flights shown on a force directed graph
+ (a graph showing directions).</p>
+
+<p>The inspiration for the demo comes from wanting to use a slightly different data-set to the normal ones 
+and experimenting with the <em>&#39;igraph&#39;</em> module.</p>
+
+<p><img src="screenshot.png" alt="screenshot" title="Screenshot"></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -57,38 +62,75 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Instructions for use</h2>
   </hgroup>
   <article data-timings="">
-    <p>Some text here</p>
+    <p>The following instructions guide a user around the <a href="https://scarrk.shinyapps.io/PeerAssignmentAirport/">demonstrator</a>:-</p>
 
-<pre><code>## 
-## Call:
-## lm(formula = y ~ x1 + x2 + x3)
-## 
-## Residuals:
-## ALL 1 residuals are 0: no residual degrees of freedom!
-## 
-## Coefficients: (3 not defined because of singularities)
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)        3         NA      NA       NA
-## x1                NA         NA      NA       NA
-## x2                NA         NA      NA       NA
-## x3                NA         NA      NA       NA
-## 
-## Residual standard error: NaN on 0 degrees of freedom
-</code></pre>
+<ol>
+<li>Select a country (or countries) from multi-selector on the left hand side panel</li>
+<li>The &#39;Graph&#39; tab illustrates a visual representation of flights between the airports that exist in
+the selected countries (the airport short code is shown)</li>
+<li>The &#39;chart summary&#39; shows the popular airports measured by outbound flights in a bar chart</li>
+</ol>
+
+<p>The remaining tabs provide filtered tabular views on the data with &#39;All Airports&#39; allowing a user
+to search through the master list of airports in the dataset.</p>
+
+<p>By removing (select the country and tap the delete key) and adding countries (click on the item in the list) on the left side panel you can see which countries have international flights between them, otherwise with a single country selected you will see national only flights.</p>
+
+<p>Countries with large numbers of airports and flights may take time to render in the graph view.</p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-3" style="background:;">
+<slide class="class" id="id" style="background:;">
   <hgroup>
-    <h3>Another Slide</h3>
+    <h2>Data Set</h2>
   </hgroup>
   <article data-timings="">
-    <p><strong>Testing how quick these files are published after commit</strong></p>
+    <p>The demonstrator uses an open source dataset available from <a href="http://openflights.org/data.html#airport">OpenFlights.org</a> which holds a set of airports and flights (or routes) between them and has a enough records 
+to support the demo.</p>
+
+<p>The airports data-set was filtered to only include those that had one or more flights available.  There are 3272 airports and 59637 flights recorded in the data-set.</p>
+
+<pre><code class="r">smoothScatter(airports[, c(&quot;Latitude&quot;, &quot;Longitude&quot;)])
+</code></pre>
+
+<p><img src="assets/fig/heatmap.png" alt="plot of chunk heatmap"> </p>
+
+<p>Plot shows a heatmap of airports using Latitude and Longitude.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Libraries</h3>
+
+<ul>
+<li>Shiny</li>
+<li>igraph</li>
+<li>plyr</li>
+<li>ggplot2</li>
+</ul>
+
+<h3>Acknowledgements</h3>
+
+<ul>
+<li><a href="http://openflights.org">http://openflights.org</a></li>
+</ul>
+
+<h3>Testing</h3>
+
+<ul>
+<li>R version 3.1.0 / Windows 7 64bit</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -100,20 +142,26 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Overview'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Instructions for use'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Another Slide'>
+        data-slide=3 title='Data Set'>
          3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Summary'>
+         4
       </a>
     </li>
   </ul>
